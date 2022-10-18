@@ -18,6 +18,9 @@ func Router() *gin.Engine {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.New()
 
+	//index hello world
+	router.GET("/hello", hello)
+
 	// .. //
 	user := router.Group("/user")
 
@@ -25,4 +28,10 @@ func Router() *gin.Engine {
 	user.POST("/withdraw", controllers.Withdraw)
 
 	return router
+}
+
+func hello(c *gin.Context) {
+	c.JSON(200, gin.H{ // response json
+		"message": "hello world",
+	})
 }
