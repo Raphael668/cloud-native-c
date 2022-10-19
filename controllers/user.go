@@ -13,9 +13,18 @@ func Deposit(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, response)
 }
 
-func Withdrawal(ctx *gin.Context) {
+func Withdraw(ctx *gin.Context) {
 	response := ResBody{}
 	response.ResCode = RES_OK
 
 	ctx.JSON(http.StatusOK, response)
+}
+
+//users/0/deposit
+func DepositTo(ctx *gin.Context) { //TODO:
+
+}
+
+func WithdrawFrom(ctx *gin.Context) { //TODO:
+
 }

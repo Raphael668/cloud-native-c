@@ -21,10 +21,13 @@ func Router() *gin.Engine {
 	router.GET("/hello", hello)
 
 	// .. //
-	user := router.Group("/user")
-
+	user := router.Group("/user") //本人
 	user.POST("/deposit", controllers.Deposit)
-	user.POST("/withdrawal", controllers.Withdrawal)
+	user.POST("/withdrawal", controllers.Withdraw)
+
+	users := router.Group("/users")
+	users.POST("/:id/deposit", controllers.DepositTo)
+	users.POST("/:id/withdrawal", controllers.WithdrawFrom)
 
 	return router
 }
