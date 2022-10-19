@@ -18,14 +18,13 @@ func Router() *gin.Engine {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.New()
 
-	//index hello world
 	router.GET("/hello", hello)
 
 	// .. //
 	user := router.Group("/user")
 
 	user.POST("/deposit", controllers.Deposit)
-	user.POST("/withdraw", controllers.Withdraw)
+	user.POST("/withdrawal", controllers.Withdrawal)
 
 	return router
 }

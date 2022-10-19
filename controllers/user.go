@@ -13,7 +13,7 @@ func Deposit(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, response)
 }
 
-func Withdraw(ctx *gin.Context) {
+func Withdrawal(ctx *gin.Context) {
 	response := ResBody{}
 	response.ResCode = RES_OK
 
