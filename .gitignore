@@ -4,3 +4,4 @@ debug
 __debug_bin
 .vscode/launch.json
 .vscode/settings.json
+config.json

@@ -1,17 +1,26 @@
 package main
 
 import (
+	"cloud-native-c/config"
 	"cloud-native-c/controllers"
-	"fmt"
+	"log"
 
 	"github.com/gin-gonic/gin"
 )
 
-func main() {
-	fmt.Println("Hello World")
+const confPath = "./config.json"
 
+func main() {
+
+	cfg, err := config.New(confPath)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	addr := ":" + cfg.Server.Port
+	log.Printf("======= Server start to listen (%s) and serve =======\n", addr)
 	r := Router()
-	r.Run(":3000") // default localhost:8000
+	r.Run(addr)
 }
 
 func Router() *gin.Engine {
