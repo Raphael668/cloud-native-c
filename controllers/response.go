@@ -16,7 +16,7 @@ type ResError struct {
 }
 
 type ResBody struct {
-	ResCode ResCode `json:"resCode"`
-	// Error   *ResError   `json:"error,omitempty"`
-	Data interface{} `json:"data,omitempty"`
+	ResCode ResCode     `json:"resCode"`
+	Error   *ResError   `json:"error,omitempty"`
+	Data    interface{} `json:"data,omitempty"`
 }
