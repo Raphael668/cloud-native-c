@@ -1,12 +1,14 @@
 package config
 
 import (
+	"cloud-native-c/db"
 	"encoding/json"
 	"io/ioutil"
 )
 
 type Config struct {
-	Server Server `json:"Server"`
+	Server Server    `json:"Server"`
+	DB     db.Config `json:"DB"`
 }
 
 type Server struct {
