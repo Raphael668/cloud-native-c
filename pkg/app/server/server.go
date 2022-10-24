@@ -1,9 +1,9 @@
 package server
 
 import (
-	"cloud-native-c/config"
-	"cloud-native-c/controllers"
-	"cloud-native-c/db"
+	"cloud-native-c/pkg/config"
+	"cloud-native-c/pkg/controllers"
+	"cloud-native-c/pkg/db"
 	"log"
 
 	"github.com/gin-gonic/gin"

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"cloud-native-c/app/server"
-	"cloud-native-c/config"
+	"cloud-native-c/pkg/app/server"
+	"cloud-native-c/pkg/config"
 	"log"
 )
 
