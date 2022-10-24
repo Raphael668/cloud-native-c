@@ -1,11 +1,6 @@
 package models
 
 type User struct {
-	ID    int
-	Email string
-}
-
-type LoginUser struct {
-	User
-	Token string
+	GormModel
+	Email string `gorm:"type:varchar(128)"` //trons varchar(255)
 }

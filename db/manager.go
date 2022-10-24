@@ -7,6 +7,8 @@ import (
 	"gorm.io/gorm"
 )
 
+var DB *gorm.DB
+
 type Config struct {
 	Addr     string `json:"server" env:"DB_ADDR" envDefault:"127.0.0.1"`
 	Port     string `json:"port" env:"DB_PORT" envDefault:"5432"`
@@ -47,5 +49,6 @@ func GormOpen(cfg *Config) (*gorm.DB, error) {
 	sqlDB.SetMaxOpenConns(cfg.MaxOpenConns)
 	sqlDB.SetMaxIdleConns(cfg.MaxIdleConns)
 
+	DB = db
 	return db, nil
 }
