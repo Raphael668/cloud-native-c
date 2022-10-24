@@ -2,6 +2,7 @@ package main
 
 import (
 	"cloud-native-c/config"
+	"cloud-native-c/pkg/app/users/repo"
 	"cloud-native-c/pkg/db"
 	"cloud-native-c/pkg/models"
 	"encoding/json"
@@ -35,6 +36,9 @@ func main() {
 	}
 
 	fmt.Printf("%+v", user)
+
+	IO := repo.UserRepo{}
+	IO.CreateUser(*user)
 }
 
 func migration(db *gorm.DB) {
