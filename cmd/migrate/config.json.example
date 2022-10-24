@@ -1,7 +1,4 @@
 {
-	"Server":{
-		"Port":"3000"
-	},
 	"DB":{	  
 			"server": "127.0.0.1",
 			"port": "5433",
@@ -16,5 +13,5 @@
 			"maxidleconns": 5,
 			"maxopenconns": 5,
 			"connmaxlifetime": 90
-	}	
+	}
 }

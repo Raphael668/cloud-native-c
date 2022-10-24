@@ -5,3 +5,4 @@ __debug_bin
 .vscode/launch.json
 .vscode/settings.json
 config.json
+seed.json

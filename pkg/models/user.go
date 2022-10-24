@@ -2,5 +2,5 @@ package models
 
 type User struct {
 	GormModel
-	Email string `gorm:"type:varchar(128)"` //trons varchar(255)
+	Name string `gorm:"unique;type:varchar(128)"` //trons varchar(255)
 }
