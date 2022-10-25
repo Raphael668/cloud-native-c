@@ -1,7 +1,7 @@
 package main
 
 import (
-	"cloud-native-c/pkg/app/users/repo"
+	"cloud-native-c/pkg/app/users/usecase"
 	"cloud-native-c/pkg/config"
 	"cloud-native-c/pkg/db"
 	"cloud-native-c/pkg/models"
@@ -56,10 +56,10 @@ func seed() error {
 		return err
 	}
 
-	IO := repo.User{}
-	IO.CreateUser(*user) //char(32) will be error
+	IO := usecase.User{}
+	u, _ := IO.Register(user) //char(32) will be error
 
-	fmt.Printf("%+v", user)
+	fmt.Printf("%+v", u)
 
 	log.Println("Create Seed --> Done")
 	return nil

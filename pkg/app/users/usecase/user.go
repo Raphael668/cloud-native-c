@@ -13,6 +13,21 @@ var userRepo repo.User
 type User struct {
 }
 
+func HashPassword(password string) (string, error) {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	return string(bytes), err
+}
+
+func (*User) Register(user *models.User) (*models.User, error) {
+
+	pw, err := HashPassword(user.Password)
+	if err != nil {
+		return nil, err
+	}
+	user.Password = pw
+	return userRepo.CreateUser(user)
+}
+
 func (*User) Login(name, password string) (*models.User, error) {
 
 	user, err := userRepo.GetUser(name)
