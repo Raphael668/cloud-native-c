@@ -5,10 +5,10 @@ import (
 	"cloud-native-c/pkg/models"
 )
 
-type UserRepo struct {
+type User struct {
 }
 
-func (t *UserRepo) CreateUser(user models.User) (*models.User, error) {
+func (t *User) CreateUser(user models.User) (*models.User, error) {
 	ddb := db.DB
 	out := &models.User{}
 	*out = user
@@ -17,6 +17,24 @@ func (t *UserRepo) CreateUser(user models.User) (*models.User, error) {
 		out.Name).
 		FirstOrCreate(&out)
 
-	return out, dbc.Error
+	if dbc.Error != nil {
+		return nil, dbc.Error
+	}
+	return out, nil
+
+}
+
+func (t *User) GetUser(name string) (*models.User, error) {
+	ddb := db.DB
+	out := &models.User{}
+
+	dbc := ddb.Where("name = ?",
+		name).
+		First(&out)
+
+	if dbc.Error != nil {
+		return nil, dbc.Error
+	}
+	return out, nil
 
 }

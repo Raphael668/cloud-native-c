@@ -56,10 +56,10 @@ func seed() error {
 		return err
 	}
 
-	fmt.Printf("%+v", user)
-
-	IO := repo.UserRepo{}
+	IO := repo.User{}
 	IO.CreateUser(*user) //char(32) will be error
+
+	fmt.Printf("%+v", user)
 
 	log.Println("Create Seed --> Done")
 	return nil
