@@ -1,8 +1,8 @@
 package main
 
 import (
-	"cloud-native-c/config"
 	"cloud-native-c/pkg/app/users/repo"
+	"cloud-native-c/pkg/config"
 	"cloud-native-c/pkg/db"
 	"cloud-native-c/pkg/models"
 	"encoding/json"
