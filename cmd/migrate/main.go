@@ -10,6 +10,7 @@ import (
 	"io/ioutil"
 	"log"
 
+	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
 
@@ -30,15 +31,10 @@ func main() {
 
 	migration(d)
 
-	user, err := LoadSeed(seedPath)
+	err = seed()
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Printf("%+v", user)
-
-	IO := repo.UserRepo{}
-	IO.CreateUser(*user)
 }
 
 func migration(db *gorm.DB) {
@@ -51,7 +47,25 @@ func migration(db *gorm.DB) {
 
 }
 
-func LoadSeed(path string) (*models.User, error) {
+func seed() error {
+
+	log.Println("Create Seed --> Start")
+
+	user, err := loadSeed(seedPath)
+	if err != nil {
+		return err
+	}
+
+	fmt.Printf("%+v", user)
+
+	IO := repo.UserRepo{}
+	IO.CreateUser(*user) //char(32) will be error
+
+	log.Println("Create Seed --> Done")
+	return nil
+}
+
+func loadSeed(path string) (*models.User, error) {
 	buf, err := ioutil.ReadFile(path)
 	if err != nil {
 		return nil, err
@@ -68,5 +82,15 @@ func LoadSeed(path string) (*models.User, error) {
 		return nil, err
 	}
 
+	pw, err := HashPassword(seed.User.Password)
+	if err != nil {
+		return nil, err
+	}
+	seed.User.Password = pw
 	return &seed.User, nil
+}
+
+func HashPassword(password string) (string, error) {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	return string(bytes), err
 }
