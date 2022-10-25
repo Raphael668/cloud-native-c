@@ -13,5 +13,5 @@
 			"maxidleconns": 5,
 			"maxopenconns": 5,
 			"connmaxlifetime": 90
-	}
+	}	
 }
