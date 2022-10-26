@@ -3,7 +3,6 @@ package controllers
 import (
 	"cloud-native-c/pkg/app/users/usecase"
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -76,7 +75,6 @@ func AuthWhenPlayerLogin(ctx *gin.Context) {
 	userUCase := usecase.User{}
 	qRet, err := userUCase.Login(param.Name, param.Password)
 	if err != nil {
-		fmt.Println(err)
 		response.ResCode = RES_INVALID_USER_PASSWORD
 		ctx.JSON(http.StatusBadRequest, response)
 		return
