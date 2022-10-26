@@ -82,11 +82,11 @@ func loadSeed(path string) (*models.User, error) {
 		return nil, err
 	}
 
-	pw, err := HashPassword(seed.User.Password)
-	if err != nil {
-		return nil, err
-	}
-	seed.User.Password = pw
+	// pw, err := HashPassword(seed.User.Password)
+	// if err != nil {
+	// 	return nil, err
+	// }
+	// seed.User.Password = pw
 	return &seed.User, nil
 }
 

@@ -3,6 +3,7 @@ package usecase
 import (
 	"cloud-native-c/pkg/app/users/repo"
 	"cloud-native-c/pkg/models"
+	"cloud-native-c/pkg/token"
 	"fmt"
 
 	"golang.org/x/crypto/bcrypt"
@@ -21,6 +22,7 @@ func HashPassword(password string) (string, error) {
 func (*User) Register(user *models.User) (*models.User, error) {
 
 	pw, err := HashPassword(user.Password)
+	fmt.Printf("len %s %d\n", pw, len(pw))
 	if err != nil {
 		return nil, err
 	}
@@ -28,18 +30,28 @@ func (*User) Register(user *models.User) (*models.User, error) {
 	return userRepo.CreateUser(user)
 }
 
-func (*User) Login(name, password string) (*models.User, error) {
+func (*User) Login(name, password string) (*LoginUser, error) {
 
 	user, err := userRepo.GetUser(name)
 	if err != nil {
 		return nil, fmt.Errorf("can't not find user")
 	}
 
-	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
-	if err != nil {
+	hashedPassword := password
 
-		return nil, fmt.Errorf("invalid password error")
+	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(hashedPassword))
+	if err != nil {
+		return nil, fmt.Errorf("invalid password : %s", err.Error())
 	}
 
-	return user, nil
+	lu := &LoginUser{
+		User:  *user,
+		Token: token.GenUUIDv4String(),
+	}
+	return lu, nil
+}
+
+type LoginUser struct {
+	models.User
+	Token string
 }

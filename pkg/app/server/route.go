@@ -11,6 +11,7 @@ func Router() *gin.Engine {
 	router := gin.New()
 
 	router.GET("/hello", hello)
+	router.POST("/login", controllers.Login)
 
 	// .. //
 	user := router.Group("/user") //本人
