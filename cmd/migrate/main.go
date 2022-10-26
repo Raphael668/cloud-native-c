@@ -10,7 +10,6 @@ import (
 	"io/ioutil"
 	"log"
 
-	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
 
@@ -82,15 +81,5 @@ func loadSeed(path string) (*models.User, error) {
 		return nil, err
 	}
 
-	// pw, err := HashPassword(seed.User.Password)
-	// if err != nil {
-	// 	return nil, err
-	// }
-	// seed.User.Password = pw
 	return &seed.User, nil
-}
-
-func HashPassword(password string) (string, error) {
-	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
-	return string(bytes), err
 }
