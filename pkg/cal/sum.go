@@ -1,4 +1,4 @@
-package sum
+package cal
 
 func TwoSum(nums []int, target int) []int {
 
@@ -11,5 +11,5 @@ func TwoSum(nums []int, target int) []int {
 		m[v] = i
 	}
 
-	return nil
+	return []int{}
 }
