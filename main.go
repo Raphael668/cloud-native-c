@@ -21,10 +21,10 @@ func main() {
 
 }
 
-func PositiveAdd(a, b int) (int, error) {
-	if a < 0 || b < 0 {
+func BiggerAdd(th, n1, n2 int) (int, error) {
+	if n1 <= th || n2 <= th {
 		return 0, fmt.Errorf("invald")
 	}
 
-	return a + b, nil
+	return n1 + n2, nil
 }
