@@ -16,5 +16,8 @@
 			"maxidleconns": 5,
 			"maxopenconns": 5,
 			"connmaxlifetime": 90
-	}	
+	},
+	"Hello":{
+		"Show":"I'm server 1"
+	}		
 }

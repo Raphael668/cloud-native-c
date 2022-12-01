@@ -24,6 +24,11 @@ func (t *Server) Serve() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	if t.Config.Hello.Show != "" {
+		show = t.Config.Hello.Show
+	}
+
 	addr := ":" + t.Config.Server.Port
 	log.Printf("======= Server start to listen (%s) and serve =======\n", addr)
 	r := Router()

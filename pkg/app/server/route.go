@@ -6,6 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+var show = "show nothing"
+
 func Router() *gin.Engine {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.New()
@@ -27,6 +29,6 @@ func Router() *gin.Engine {
 
 func hello(c *gin.Context) {
 	c.JSON(200, gin.H{ // response json
-		"message": "hello world",
+		"message": "Hello" + ",  " + show,
 	})
 }

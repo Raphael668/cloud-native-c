@@ -9,10 +9,15 @@ import (
 type Config struct {
 	Server Server    `json:"Server"`
 	DB     db.Config `json:"DB"`
+	Hello  Hello     `json:"Hello"`
 }
 
 type Server struct {
 	Port string `json:"Port"`
+}
+
+type Hello struct {
+	Show string `json:"Show"`
 }
 
 func New(path string) (*Config, error) {
