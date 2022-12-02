@@ -12,6 +12,8 @@ func Router() *gin.Engine {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.New()
 
+	router.Use(Logger, gin.Recovery())
+
 	router.GET("/hello", hello)
 	router.POST("/login", controllers.Login)
 
