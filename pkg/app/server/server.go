@@ -29,8 +29,12 @@ func (t *Server) Serve() {
 		show = t.Config.Hello.Show
 	}
 
+	InitLogger("", t.Config.GCP.ProjectID, t.Config.GCP.LogName)
+
 	addr := ":" + t.Config.Server.Port
 	log.Printf("======= Server start to listen (%s) and serve =======\n", addr)
 	r := Router()
 	r.Run(addr)
+
+	CloseLogger()
 }
